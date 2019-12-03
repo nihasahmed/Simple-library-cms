@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% block maincontent %}
+    <h1>Search books and authors</h1>
+    <form action="" method="post" novalidate>
+        {{ form.hidden_tag() }}
+        <p>
+            {{ form.author.label }}<br>
+            {{ form.author }}
+            {% for error in form.author.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>
+            {{ form.title.label }}<br>
+            {{ form.title(size=32) }}
+            {% for error in form.title.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>{{ form.submit() }}</p>
+    </form>
+    {% if books == 'unsearched' %}
+        <p>Your search results will appear here</p>
+    {% elif books %}
+<p>Search returned {{ books|length }} books</p>
+       <table class="table table-striped">
+        <thead>
+          <tr>
+            <th></th>
+            <th>Title</th>
+            <th>Author</th>
+          </tr>
+        </thead>
+        <tbody>
+        {% for book in books %}
+          <tr>
+
+            <td>{{ loop.index }}</td>
+            <td>{{ book.title }}</td>
+            <td>{{ book.workby.author }}</td>
+
+          </tr>
+        {% endfor %}
+        </tbody>
+      </table>
+    {% else %}
+        <p>Sorry, no results were found</p>
+    {% endif %}
+{% endblock %}

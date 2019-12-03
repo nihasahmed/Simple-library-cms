@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block maincontent %}
+    <h1>Hi, welcome to library cms</h1>
+
+    <table class="table table-striped">
+    <thead>
+      <tr>
+        <th></th>
+        <th>Title</th>
+        <th>Author</th>
+      </tr>
+    </thead>
+    <tbody>
+    {% for book in books %}
+      <tr>
+
+        <td>{{ loop.index }}</td>
+        <td>{{ book.title }}</td>
+        <td>{{ book.workby.author }}</td>
+
+      </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+{% endblock %}

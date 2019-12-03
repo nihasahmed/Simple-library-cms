@@ -1,0 +1,4 @@
+myvenv/
+.idea/
+app/app.db
+migrations/
